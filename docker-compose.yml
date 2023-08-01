@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: spot-db
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: always
+  
+  spotbuzz-app:
+    container_name: accuknox-task
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@postgres:5432/postgres"
+    ports:
+      - "8080:8080"
+    restart: always
+  
+volumes:
+  pgdata:
+  
