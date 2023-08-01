@@ -18,7 +18,7 @@ go run main.go
  docker run -d --name postgres-container -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=postgres -p 5432:5432 postgres:latest
 ```
 - The above command will start a POSTGRES DB in detached mode(Background)
-- 
+
 ### Steps to Run this project with docker
 
 - Clone the repo
